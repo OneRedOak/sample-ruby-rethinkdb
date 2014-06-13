@@ -1,0 +1,14 @@
+language: ruby
+
+services:
+  - cassandra
+
+install:
+  - gem install cassandra
+  
+before_script:
+  - cassandra-cli -host localhost -port 9160 -f removeKeyspace.txt
+
+script:
+  - cassandra-cli -host localhost -port 9160 -f schema.txt
+  - ruby sample.rb
