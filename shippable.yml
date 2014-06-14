@@ -4,10 +4,10 @@ rvm:
   - jruby-1.7.12
 
 services:
-  - neo4j
-  
+  - rethinkdb
+
 install:
-  - gem install neo4j
+  - gem install rethinkdb
 
 script:
   - ruby sample.rb

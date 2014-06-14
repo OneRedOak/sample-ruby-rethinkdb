@@ -1,21 +1,18 @@
-require 'neo4j'
+require 'rethinkdb'
+include RethinkDB::Shortcuts
 
-puts "starting neo4j buildsample written using ruby.."
+puts "starting rethinkdb buildsample written using ruby.."
+connection = r.connect(:host => 'localhost', :port => 28015).repl
+r.db_drop('test').run
+r.db_create('test').run
 
-puts "Creating sample nodes with properties name and age.."
-Neo4j::Transaction.run do
-  node1 = Neo4j::Node.new(:name => 'uone', :age => 10)
-  node2 = Neo4j::Node.new(:name => 'utwo', :age => 20)
-  node3 = Neo4j::Node.new(:name => 'uthree', :age => 30)
-  node4 = Neo4j::Node.new(:name => 'ufour', :age => 40)
+r.db('test').table_create('table').run
 
-  puts "Assigning relationship between nodes.."
+r.table("table").insert({
+    :id => 1,
+    :title => "Lorem ipsum",
+    :content => "Dolor sit amet"
+}).run
 
-  node1.both(:friends) << node2
-  node2.both(:friends) << node3
-  node3.both(:friends) << node4
-
-  puts "Output from the sample program: "
-
-  puts node1.outgoing(:friends).depth(3).map{|node| node[:name]}.join(" => ")
-end
+puts "output data from the program.."
+  puts r.table('table').get(1).keys.run.length
