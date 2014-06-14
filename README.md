@@ -1,4 +1,4 @@
-cassandra-buildsample
-=====================
+neo4j-buildsample
+=================
 
-Build sample written in ruby that uses `cassandra` database service
+A buildsample written in Ruby, that uses `neo4j` graph database service

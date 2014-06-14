@@ -1,14 +1,13 @@
 language: ruby
 
-services:
-  - cassandra
+rvm:
+  - jruby-1.7.12
 
-install:
-  - gem install cassandra
+services:
+  - neo4j
   
-before_script:
-  - cassandra-cli -host localhost -port 9160 -f removeKeyspace.txt
+install:
+  - gem install neo4j
 
 script:
-  - cassandra-cli -host localhost -port 9160 -f schema.txt
   - ruby sample.rb
