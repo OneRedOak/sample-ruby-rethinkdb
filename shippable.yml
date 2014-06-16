@@ -8,6 +8,7 @@ services:
 
 install:
   - gem install rethinkdb
+  - gem install minitest
 
 script:
-  - ruby sample.rb
+  - ruby test.rb
