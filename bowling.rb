@@ -3,9 +3,9 @@ include RethinkDB::Shortcuts
 
 class Bowling
   @var = 0
+  r.connect(:host => 'localhost', :port => 28015).repl
 
   def hit()
-    connection = r.connect(:host => 'localhost', :port => 28015).repl
     r.db_drop('test').run
     r.db_create('test').run
 
@@ -13,16 +13,15 @@ class Bowling
 
     r.table("table").insert({
         :id => 1,
-        :title => "Lorem ipsum",
-        :content => "Dolor sit amet"
+        :title => "Bowling Score",
+        :content => "Strike"
     }).run
 
-    puts r.table('table').get(1).keys.run.length
     @var = r.table('table').get(1).keys.run.length
   end
 
-  def self.score
-  	@var
+  def score
+  	return @var
   end
 end
 

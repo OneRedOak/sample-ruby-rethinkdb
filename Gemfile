@@ -6,3 +6,4 @@ gem "rspec"
 gem "ci_reporter"
 gem "simplecov"
 gem "simplecov-csv"
+gem "rethinkdb", '1.12.0.0'

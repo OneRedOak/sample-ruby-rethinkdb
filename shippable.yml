@@ -7,9 +7,6 @@ env:
 services:
   - rethinkdb
 
-install:
-  - gem install rethinkdb
-
 notifications:
      email:
          recipients:
