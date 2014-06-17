@@ -1,8 +1,8 @@
 require 'rethinkdb'
 include RethinkDB::Shortcuts
 
-class Sample
-  def runSample()
+class Bowling
+  def hit()
     connection = r.connect(:host => 'localhost', :port => 28015).repl
     r.db_drop('test').run
     r.db_create('test').run
@@ -16,6 +16,11 @@ class Sample
     }).run
 
     puts r.table('table').get(1).keys.run.length
-    return r.table('table').get(1).keys.run.length
+    self.score = r.table('table').get(1).keys.run.length
+  end
+
+  def score
+  	0
   end
 end
+
