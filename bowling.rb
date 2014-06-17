@@ -2,6 +2,8 @@ require 'rethinkdb'
 include RethinkDB::Shortcuts
 
 class Bowling
+  @var = 0
+
   def hit()
     connection = r.connect(:host => 'localhost', :port => 28015).repl
     r.db_drop('test').run
@@ -16,11 +18,11 @@ class Bowling
     }).run
 
     puts r.table('table').get(1).keys.run.length
-    self.score = r.table('table').get(1).keys.run.length
+    @var = r.table('table').get(1).keys.run.length
   end
 
-  def score
-  	0
+  def self.score
+  	@var
   end
 end
 
